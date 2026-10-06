@@ -1,0 +1,23 @@
+<Project>
+
+  <!-- Central package versions — the single version truth for app + Core +
+       tests (design §2.2), mirroring Android Omega's version catalog.
+       Every pin below was verified to exist on nuget.org at scaffold time;
+       see README "Version choices" for the rationale per package. -->
+  <ItemGroup>
+    <!-- Windows App SDK 2.x line; >= 2.1.3 is the diagnostics floor
+         (below it the XAML compiler has the cryptic MSB3073 bug). -->
+    <PackageVersion Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools.WinUIAnalyzer" Version="0.7.1" />
+    <!-- MVVM Toolkit >= 8.4: partial-property [ObservableProperty] is a
+         hard AOT requirement (field form = error MVVMTK0045). -->
+    <PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
+    <!-- Tests -->
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.5" />
+  </ItemGroup>
+
+</Project>

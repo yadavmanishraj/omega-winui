@@ -1,0 +1,37 @@
+name: build
+
+# Design §12.2: restore -> build -> Core unit tests -> AOT publish
+# verification -> unsigned MSIX bundle. Signing happens in a separate
+# protected environment — never a dev cert in CI.
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest # must carry the .NET 10 SDK + MSVC C++ workload
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Install WinApp CLI
+        run: winget install Microsoft.WinAppCli --accept-source-agreements --accept-package-agreements
+
+      - name: Restore + build (JIT, warnings visible)
+        run: dotnet build OmegaWinUI.sln -c Release
+
+      - name: Core unit tests
+        run: dotnet test tests/OmegaWinUI.Core.Tests -c Release
+
+      - name: AOT publish verification (x64)
+        # THE gate: fails on IL/CsWinRT warnings — they are never suppressed.
+        run: dotnet publish src/OmegaWinUI/OmegaWinUI.csproj -c Release -r win-x64
+
+      - name: Package unsigned MSIX bundle
+        run: winapp package .\src\OmegaWinUI\OmegaWinUI.csproj --arch x64 --arch arm64 --no-sign
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: omega-winui-msix
+          path: '**/*.msixbundle'

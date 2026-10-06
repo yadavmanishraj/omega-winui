@@ -1,0 +1,12 @@
+<Project>
+
+  <!-- Shared build posture for every project in the solution
+       (design §2.4): nullable on, latest C#, central package versions. -->
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+</Project>
