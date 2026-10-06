@@ -8,7 +8,7 @@
     <!-- Windows App SDK 2.x line; >= 2.1.3 is the diagnostics floor
          (below it the XAML compiler has the cryptic MSB3073 bug). -->
     <PackageVersion Include="Microsoft.WindowsAppSDK" Version="2.5.1" />
-    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" />
+    <PackageVersion Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4654" />
     <PackageVersion Include="Microsoft.Windows.SDK.BuildTools.WinUIAnalyzer" Version="0.7.1" />
     <!-- MVVM Toolkit >= 8.4: partial-property [ObservableProperty] is a
          hard AOT requirement (field form = error MVVMTK0045). -->

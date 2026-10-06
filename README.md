@@ -75,7 +75,7 @@ The guidance source (`microsoft/win-dev-skills` v0.7.1) is CLI-first and version
 | App TFM | `net10.0-windows10.0.26100.0`, min version `10.0.17763.0` | Template-typical per the skills' workflow example |
 | Core / tests TFM | plain `net10.0` | Cross-platform by design |
 | `Microsoft.WindowsAppSDK` | **2.5.1** | ≥ 2.1.3 required (below that: XAML compiler `MSB3073` bug) |
-| `Microsoft.Windows.SDK.BuildTools` | 10.0.26100.1742 | Matches the 26100 target platform |
+| `Microsoft.Windows.SDK.BuildTools` | 10.0.26100.4654 | Matches the 26100 target platform |
 | `Microsoft.Windows.SDK.BuildTools.WinUIAnalyzer` | 0.7.1 (`PrivateAssets="all"`) | Added by hand — the CLI does not inject it |
 | `CommunityToolkit.Mvvm` | 8.4.2 | ≥ 8.4 required for partial-property `[ObservableProperty]` |
 | `Microsoft.Extensions.DependencyInjection` | 10.0.0 | Explicit registrations only |
