@@ -18,7 +18,9 @@ public class JsonMappingTests
     private static T Deserialize<T>(string json) =>
         JsonSerializer.Deserialize(
             json,
-            (JsonTypeInfo<T>)UpstreamJsonContext.Default.GetTypeInfo(typeof(T)))!;
+            UpstreamJsonContext.Default.GetTypeInfo(typeof(T)) as JsonTypeInfo<T>
+                ?? throw new InvalidOperationException(
+                    $"No JsonTypeInfo registered for {typeof(T).Name} in UpstreamJsonContext."))!;
 
     [Fact]
     public void SearchSongs_ParsesStringlyTypedFields_AndMapsDomain()

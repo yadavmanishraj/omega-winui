@@ -434,7 +434,9 @@ public sealed class JioSaavnClient : IDisposable
     // ------------------------------------------------------------------
 
     private static JsonTypeInfo<T> TypeInfo<T>() =>
-        (JsonTypeInfo<T>)UpstreamJsonContext.Default.GetTypeInfo(typeof(T));
+        UpstreamJsonContext.Default.GetTypeInfo(typeof(T)) as JsonTypeInfo<T>
+        ?? throw new InvalidOperationException(
+            $"No JsonTypeInfo registered for {typeof(T).Name} in UpstreamJsonContext.");
 
     private static string Num(int value) => value.ToString(CultureInfo.InvariantCulture);
 
